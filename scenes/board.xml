@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="2" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://scenes/tileset.xml" type="TileSet" index="0"></ext_resource>
+	<ext_resource path="res://scenes/tileset1.xml" type="TileSet" index="0"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "conn_count" </string>
@@ -47,7 +47,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -533.842, -206.013 </vector2>
+							<vector2> -321.899, -267.165 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -177,14 +177,14 @@
 				</dictionary>
 				<int> 0 </int>
 				<resource  external="0">  </resource>
-				<vector2> 64, 64 </vector2>
+				<vector2> 82, 96 </vector2>
 				<int> 16 </int>
 				<matrix32> 1, 0, 0, 1, 0, 0 </matrix32>
 				<int> 1 </int>
 				<bool> False </bool>
 				<real> 1 </real>
 				<real> 0 </real>
-				<int_array  len="0"> 					 </int_array>
+				<int_array  len="142"> 					-65535, 0, -65533, 0, -65531, 0, -65529, 0, -65527, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 65536, 0, 65537, 0, 65538, 0, 65539, 2, 65540, 0, 65541, 0, 65542, 0, 65543, 5, 65544, 0, 65545, 0, 131072, 0, 131073, 0, 131074, 1, 131075, 3, 131076, 0, 131077, 0, 131078, 3, 131079, 1, 131080, 0, 131081, 0, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 262144, 0, 262145, 0, 262146, 4, 262147, 5, 262148, 0, 262149, 0, 262150, 2, 262151, 4, 262152, 0, 262153, 0, 327680, 0, 327681, 0, 327682, 2, 327683, 0, 327684, 0, 327685, 0, 327686, 3, 327687, 0, 327688, 0, 327689, 0, 393216, 0, 393217, 0, 393218, 0, 393220, 0, 393222, 0, 393224, 0 </int_array>
 			</array>
 			<string> "version" </string>
 			<int> 2 </int>
