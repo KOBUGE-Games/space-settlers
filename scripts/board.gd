@@ -36,10 +36,11 @@ func _ready():
 
 # DEBUG
 func _draw():
-	for value in movable_cell:
-		draw_circle(value,10,Color(1,1,1)) # walkable spot
-	for value in colony_cell:
-		if value in movable_cell:
-			draw_circle(value,7,color_map[colony_res1[value]-1]) # 1st resource
-			draw_circle(value,4,color_map[colony_res2[value]-1]) # 2nd resource
+	if 0 == 1: # disable debug
+		for value in movable_cell:
+			draw_circle(value,10,Color(1,1,1)) # walkable spot
+		for value in colony_cell:
+			if value in movable_cell:
+				draw_circle(value,7,color_map[colony_res1[value]-1]) # 1st resource
+				draw_circle(value,4,color_map[colony_res2[value]-1]) # 2nd resource
 
