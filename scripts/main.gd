@@ -11,9 +11,11 @@ const SCROLLING_STEP = 100
 var scrolling = -1
 
 onready var camera = get_node("camera_main")
+onready var hexagon = preload("res://hexagon.tscn")
 
 func _ready():
 	randomize()
+	render_hexes()
 	set_process_input(true)
 	set_fixed_process(true)
 	#OS.set_window_maximized(true)
@@ -41,4 +43,13 @@ func _fixed_process(delta):
 	elif scrolling == BOTTOM:
 		camera.set_offset(camera.get_offset() + Vector2(0,SCROLLING_STEP*delta))
 
+func render_hexes():
+	printt(get_node("TileMap").get_used_cells())
+	for t in get_node("TileMap").get_used_cells():
+		var tile = hexagon.instance()
+		if int(t.x) % 2 == 0:
+			tile.set_pos(t*Vector2(82,96)+Vector2(82/2,96/2))
+		else:
+			tile.set_pos(t*Vector2(82,96)+Vector2(0,48)+Vector2(82/2,96/2))
+		get_node("board").add_child(tile)
 

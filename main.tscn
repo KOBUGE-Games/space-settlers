@@ -4,7 +4,7 @@
 [ext_resource path="res://misc/dices.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gui/frame.tscn" type="PackedScene" id=3]
 [ext_resource path="res://backgrounds/bg_1.jpg" type="Texture" id=4]
-[ext_resource path="res://images/space.png" type="Texture" id=5]
+[ext_resource path="res://hexagon_tileset.tres" type="TileSet" id=5]
 
 [node name="main" type="Node2D"]
 
@@ -138,10 +138,24 @@ texture = ExtResource( 4 )
 
 [node name="board" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="board"]
+[node name="TileMap" type="TileMap" parent="."]
 
-transform/pos = Vector2( 312, 241 )
-texture = ExtResource( 5 )
+visibility/visible = false
+mode = 0
+tile_set = ExtResource( 5 )
+cell/size = Vector2( 82, 96 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 1
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 131074, 0, 131075, 0, 131076, 0, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 262148, 0, 262149, 0, 262150, 0 )
 
 
 [editable path="hud/resources/slot_ore"]
