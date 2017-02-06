@@ -24,7 +24,7 @@ animation = "default"
 
 [node name="animated_sprite_2" type="AnimatedSprite" parent="."]
 
-transform/pos = Vector2( 130.694, 0.663422 )
+transform/pos = Vector2( 68.9421, -0.876636 )
 frames = SubResource( 1 )
 animation = "default"
 

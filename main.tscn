@@ -1,15 +1,155 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
-[ext_resource path="res://backgrounds/bg_1.jpg" type="Texture" id=2]
+[ext_resource path="res://misc/dices.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/frame.tscn" type="PackedScene" id=3]
+[ext_resource path="res://backgrounds/bg_1.jpg" type="Texture" id=4]
+[ext_resource path="res://images/space.png" type="Texture" id=5]
 
 [node name="main" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
-[node name="background" type="Sprite" parent="."]
+[node name="camera_main" type="Camera2D" parent="."]
 
-transform/pos = Vector2( 510.141, 385.547 )
-texture = ExtResource( 2 )
+offset = Vector2( 512, 384 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -1536
+limit/top = -1536
+limit/right = 1536
+limit/bottom = 1536
+limit/smoothed = false
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="dice" parent="hud" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 864, 32 )
+
+[node name="resources" type="Node2D" parent="hud"]
+
+editor/display_folded = true
+
+[node name="slot_ore" parent="hud/resources" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 32, 32 )
+
+[node name="slot_food" parent="hud/resources" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 96, 32 )
+
+[node name="resource" parent="hud/resources/slot_food"]
+
+frame = 3
+
+[node name="slot_oil" parent="hud/resources" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 160, 32 )
+
+[node name="resource" parent="hud/resources/slot_oil"]
+
+frame = 2
+
+[node name="slot_carbon" parent="hud/resources" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 224, 32 )
+
+[node name="resource" parent="hud/resources/slot_carbon"]
+
+frame = 1
+
+[node name="slot_trading" parent="hud/resources" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 288, 32 )
+
+[node name="resource" parent="hud/resources/slot_trading"]
+
+frame = 4
+
+[node name="addons" type="Node2D" parent="hud"]
+
+editor/display_folded = true
+
+[node name="slot_speed" parent="hud/addons" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 416, 32 )
+
+[node name="resource" parent="hud/addons/slot_speed"]
+
+frame = 5
+
+[node name="slot_canons" parent="hud/addons" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 480, 32 )
+
+[node name="resource" parent="hud/addons/slot_canons"]
+
+frame = 6
+
+[node name="slot_moh" parent="hud/addons" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 544, 32 )
+
+[node name="resource" parent="hud/addons/slot_moh"]
+
+frame = 7
+
+[node name="slot_winning_point" parent="hud/addons" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 672, 32 )
+
+[node name="resource" parent="hud/addons/slot_winning_point"]
+
+frame = 8
+
+[node name="background" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="background" type="Sprite" parent="background"]
+
+transform/pos = Vector2( 512, 384 )
+texture = ExtResource( 4 )
+
+[node name="board" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="board"]
+
+transform/pos = Vector2( 312, 241 )
+texture = ExtResource( 5 )
 
 
+[editable path="hud/resources/slot_ore"]
+[editable path="hud/resources/slot_food"]
+[editable path="hud/resources/slot_oil"]
+[editable path="hud/resources/slot_carbon"]
+[editable path="hud/resources/slot_trading"]
+[editable path="hud/addons/slot_speed"]
+[editable path="hud/addons/slot_canons"]
+[editable path="hud/addons/slot_moh"]
+[editable path="hud/addons/slot_winning_point"]
