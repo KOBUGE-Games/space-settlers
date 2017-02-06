@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/dice.gd" type="Script" id=1]
+[ext_resource path="res://images/dice/1_dot.png" type="Texture" id=2]
+[ext_resource path="res://images/dice/2_dots.png" type="Texture" id=3]
+[ext_resource path="res://images/dice/3_dots.png" type="Texture" id=4]
+[ext_resource path="res://images/dice/4_dots.png" type="Texture" id=5]
+[ext_resource path="res://images/dice/5_dots.png" type="Texture" id=6]
+[ext_resource path="res://images/dice/6_dots.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ], "loop":true, "name":"default", "speed":5.0 } ]
+
+[node name="dice" type="Node2D"]
+
+transform/pos = Vector2( 86.8495, 85.1793 )
+script/script = ExtResource( 1 )
+
+[node name="animated_sprite" type="AnimatedSprite" parent="."]
+
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="animated_sprite_2" type="AnimatedSprite" parent="."]
+
+transform/pos = Vector2( 130.694, 0.663422 )
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.08
+one_shot = false
+autostart = false
+
+[node name="button" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -57.0
+margin/top = -59.0
+margin/right = 187.0
+margin/bottom = 55.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]
+
+
