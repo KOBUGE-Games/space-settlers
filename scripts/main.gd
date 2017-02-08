@@ -6,7 +6,7 @@ const BOTTOM = 2
 const LEFT = 3
 
 const SCROLLING_SPACE = 20
-const SCROLLING_STEP = 100
+const SCROLLING_STEP = 300
 
 var scrolling = -1
 
