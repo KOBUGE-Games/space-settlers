@@ -6,9 +6,9 @@
 [ext_resource path="res://gui/button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gui/cursor_hover.png" type="Texture" id=5]
 [ext_resource path="res://gui/cursor.gd" type="Script" id=6]
-[ext_resource path="res://gui/window.png" type="Texture" id=7]
-[ext_resource path="res://fonts/serreria_sobria_20_white.fnt" type="BitmapFont" id=8]
-[ext_resource path="res://music/intro.ogg" type="AudioStream" id=9]
+[ext_resource path="res://music/intro.ogg" type="AudioStream" id=7]
+[ext_resource path="res://gui/window.png" type="Texture" id=8]
+[ext_resource path="res://fonts/serreria_sobria_20_white.fnt" type="BitmapFont" id=9]
 
 [node name="main" type="Node2D"]
 
@@ -95,30 +95,9 @@ texture = ExtResource( 5 )
 offset = Vector2( 20.0776, 21.341 )
 script/script = ExtResource( 6 )
 
-[node name="window" type="Sprite" parent="."]
-
-transform/pos = Vector2( 604.912, 414.211 )
-texture = ExtResource( 7 )
-
-[node name="help" type="Label" parent="window"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -322.0
-margin/top = -229.0
-margin/right = 314.0
-margin/bottom = 207.0
-custom_fonts/font = ExtResource( 8 )
-text = "An awesome colonization board-game in space.\n\nOfficial rule files from \"Starfarers of Catan\" \ncan be found on this official page. \nHere the one-click download files \n(will start the download instantly!)\n"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="intro" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 7 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -126,5 +105,100 @@ stream/autoplay = true
 stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
+
+[node name="window_host" type="Sprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 604.912, 414.211 )
+texture = ExtResource( 8 )
+
+[node name="window" type="Node" parent="."]
+
+[node name="frame" type="Sprite" parent="window"]
+
+transform/pos = Vector2( 604.912, 414.211 )
+texture = ExtResource( 8 )
+
+[node name="windows" type="Node" parent="window"]
+
+[node name="host" type="Node2D" parent="window/windows"]
+
+visibility/visible = false
+
+[node name="label" type="Label" parent="window/windows/host"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 282.0
+margin/top = 185.0
+margin/right = 918.0
+margin/bottom = 621.0
+custom_fonts/font = ExtResource( 9 )
+text = "Host"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="join" type="Node2D" parent="window/windows"]
+
+visibility/visible = false
+
+[node name="label" type="Label" parent="window/windows/join"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 282.0
+margin/top = 185.0
+margin/right = 918.0
+margin/bottom = 621.0
+custom_fonts/font = ExtResource( 9 )
+text = "Join"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="settings" type="Node2D" parent="window/windows"]
+
+visibility/visible = false
+
+[node name="label" type="Label" parent="window/windows/settings"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 282.0
+margin/top = 185.0
+margin/right = 918.0
+margin/bottom = 621.0
+custom_fonts/font = ExtResource( 9 )
+text = "Settings"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="help" type="Node2D" parent="window/windows"]
+
+editor/display_folded = true
+
+[node name="label" type="Label" parent="window/windows/help"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 282.0
+margin/top = 185.0
+margin/right = 918.0
+margin/bottom = 621.0
+custom_fonts/font = ExtResource( 9 )
+text = "An awesome colonization board-game in space.\n\nOfficial rule files from \"Starfarers of Catan\" \ncan be found on this official page. \nHere the one-click download files \n(will start the download instantly!)\n"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
