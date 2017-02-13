@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://gui/button_normal.png" type="Texture" id=1]
+[ext_resource path="res://gui/button_hover.png" type="Texture" id=2]
+[ext_resource path="res://gui/button.gd" type="Script" id=3]
+[ext_resource path="res://fonts/serreria_sobria_20_white.fnt" type="BitmapFont" id=4]
+
+[node name="button" type="TextureButton"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 190.0
+margin/bottom = 74.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+textures/hover = ExtResource( 2 )
+script/script = ExtResource( 3 )
+label = "Button"
+name = "button"
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 14.0
+margin/top = 12.0
+margin/right = 179.0
+margin/bottom = 63.0
+custom_fonts/font = ExtResource( 4 )
+text = "Button"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="." to="." method="_on_button_pressed"]
+
+
