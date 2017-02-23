@@ -5,6 +5,7 @@
 - [alket](https://github.com/alketii)
 - [bojidar_bg](https://github.com/bojidar-bg)
 - [brurib](https://github.com/brurib)
+- [faless](https://github.com/faless)
 
 ### Graphics & Video
 - [Space Background by Rawdanitsu](http://opengameart.org/content/space-backgrounds-7)
