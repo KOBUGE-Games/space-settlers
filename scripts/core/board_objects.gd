@@ -51,6 +51,9 @@ class PTag extends Reference:
 		self.type = type
 		self.requirement = req
 
+	func get_type():
+		return type
+
 # A Planet. Holds the id, resource, tag, and connected locations
 # It also comes with an handy function to get the center of the hexagon
 # it's supposed to be in
@@ -65,6 +68,12 @@ class Planet extends Reference:
 		self.tag = tag
 		self.res = resource
 		self.locations = locations
+
+	func get_tag():
+		return tag
+
+	func get_resource():
+		return res
 
 	func get_pos():
 		var s = locations[0].get_pos()
@@ -85,6 +94,7 @@ class Location extends Reference:
 	var x = 0
 	var y = 0
 	var occupant = null
+	var terminal = false
 
 	func _init(x,y,occpant=null):
 		self.x = x
@@ -100,6 +110,10 @@ class Location extends Reference:
 	# north = / \, south =  |
 	func is_northface():
 		return y % 2 == 0
+
+	# Return true if the vertex is terminal (ie. planet/outpost location)
+	func is_terminal():
+		return terminal
 
 	func get_id():
 		return get_id_for(x,y)

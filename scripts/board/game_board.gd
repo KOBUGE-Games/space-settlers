@@ -2,47 +2,67 @@ extends Node2D
 
 const Board = preload("res://scripts/core/board.gd")
 
+# These are the graphic nodes that will handle the board objects.
+# Modify them to modify the look and feel of stars, planets, locations, etc
+const GameStar = preload("res://scenes/board/star.tscn")
+const GamePlanet = preload("res://scenes/board/planet.tscn")
+const GameLocation = preload("res://scenes/board/location.tscn")
+
+# Offset from 0,0
+var _offset = Vector2(20,20)
+
+# Size of each row and column of the locations grid.
+# Note: it's a grid of vertexes. For this reason, regular hexagons are
+#       not posible right now. This could be fixed with some math in
+#       Location.get_pos() and Planet.get_pos()
+var _size = Vector2(45,45*sin(deg2rad(60)))
+
+# Board data
 var _board = Board.new()
 var _paths = []
 var _stars = []
 var _planets = []
+
+# Object layers
+onready var _planets_layer = get_node("Planets")
+onready var _paths_layer = get_node("Locations")
+onready var _stars_layer = get_node("Stars")
 
 func _ready():
 	_board.setup_board()
 	_paths = _board.get_paths()
 	_stars = _board.get_stars()
 	_planets = _board.get_planets()
-	update()
 
-func _draw():
-	var offset = Vector2(20,20)
-	var size = Vector2(45,45*sin(deg2rad(60)))
-	for k in _paths:
-		var loc = _paths[k]
-		draw_circle(loc.get_pos() * size + offset, 3, Color(1,0,0))
-		for a in loc.get_adj(_paths):
-			draw_line(loc.get_pos() * size + offset, a.get_pos() * size + offset, Color(0,0,1), 2.0)
+	# Populate stars
 	for k in _stars:
 		var star = _stars[k]
-		draw_circle(star.get_pos() * size + offset, 8, Color(.7,.8,.3))
+		var node = GameStar.instance()
+		node.set_pos(star.get_pos() * _size + _offset)
+		node.star = star
+		_stars_layer.add_child(node)
 
+	# Populate planets
 	for k in _planets:
 		var planet = _planets[k]
-		draw_circle(planet.locations[1].get_pos() * size + offset, 8, Color(0,1,1))
-		draw_circle(planet.locations[2].get_pos() * size + offset, 8, Color(0,1,1))
-		draw_circle(planet.get_pos() * size + offset, 12, get_planet_color(planet.res))
-		draw_circle(planet.get_pos() * size + offset, 6, get_mark_color(planet.tag.type))
+		var node = GamePlanet.instance()
+		node.set_pos(planet.get_pos() * _size + _offset)
+		node.planet = planet
+		_planets_layer.add_child(node)
 
-func get_mark_color(type):
-	if type == 4: return Color(1,0,0)
-	if type == 5: return Color(.5,.5,.1)
-	if type == 6: return Color(.2,.2,1)
-	return Color(1,1,1)
+	# Populate locations
+	for k in _paths:
+		var loc = _paths[k]
+		var node = GameLocation.instance()
+		node.set_pos(loc.get_pos() * _size + _offset)
+		node.location = _paths[k]
+		_paths_layer.add_child(node)
 
-func get_planet_color(res):
-	if res == 0: return Color(1,0.2,0.2)
-	if res == 1: return Color(.6,.6,.3)
-	if res == 2: return Color(0,.7,0)
-	if res == 3: return Color(0,0,.7)
-	if res == 4: return Color(1,0,1)
-	return Color(0,0,0,0) # should not happen
+	update()
+
+# We could use a TileMap for the grid after some fun time with Math, but I think it's low priority.
+func _draw():
+	for k in _paths:
+		var loc = _paths[k]
+		for a in loc.get_adj(_paths):
+			draw_line(loc.get_pos() * _size + _offset, a.get_pos() * _size + _offset, Color(0,0,1), 2.0)

@@ -6,4 +6,12 @@
 
 script/script = ExtResource( 1 )
 
+[node name="Locations" type="Node2D" parent="."]
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Ships" type="Node2D" parent="."]
+
 

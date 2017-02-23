@@ -58,17 +58,24 @@ func setup_board(size=Vector2(31,24), star_config=BObj.DEF_STAR_CFG, marker_cfg=
 			if (y < 2 or y > max_y - 3) and x > 5:
 				continue
 
+			# Skip Star locations
 			var id = Location.get_id_for(x,y)
 			if _stars.has(id):
 				continue
 
-			_paths[Location.get_id_for(x,y)] = Location.new(x,y)
+			_paths[id] = Location.new(x,y)
 
 	# Setup planets
 	for i in range(0,_stars.size()):
-		var s = _stars[Location.get_id_for(star_config[i][0],star_config[i][1])]
+		var id = Location.get_id_for(star_config[i][0],star_config[i][1])
+		var s = _stars[id]
 		var tag_type = star_config[i][2]
 		var res_type = star_config[i][3]
+
+		# Set locations adjacent to the star as terminal
+		for l in s.get_adj(_paths):
+			l.terminal = true
+
 		if i > 3:
 			var tn = i-4
 			create_planet(s, 0, res_type[0], _tags[tag_type[0]][tn])
